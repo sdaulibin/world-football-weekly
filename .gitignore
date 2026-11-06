@@ -34,3 +34,8 @@ next-env.d.ts
 # 抓取用临时数据
 .full2.json
 .fulls.json
+
+# 抓取临时数据
+.programs.json
+.progs.json
+.subjects.json
