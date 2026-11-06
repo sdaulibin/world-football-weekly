@@ -63,15 +63,17 @@ npm run build   # 静态导出至 out/
 npm run lint    # ESLint
 ```
 
-## 部署（Cloudflare）
+## 部署（Cloudflare Pages）
 
-静态导出 + Workers 静态资产托管，仓库内已带 `wrangler.jsonc`（`assets.directory = ./out`）：
+与 swim 项目相同：Cloudflare Pages Git 集成，纯静态托管。
 
-- **构建命令**：`npm run build`（或 `npx next build`）
-- **部署命令**：`npx wrangler deploy`（读取 wrangler.jsonc，把 out/ 作为静态资产发布）
+- **框架预设**：Next.js（静态 HTML 导出）
+- **构建命令**：`npx next build`
+- **构建输出目录**：`out`
+- **生产分支**：main
 - **Node 版本**：22（仓库已带 `.nvmrc`）
 
-Cloudflare Pages 的 Git 集成同样适用：框架预设 Next.js（静态 HTML 导出）、输出目录 `out`。
+保存后每次 `git push` 自动构建部署，线上地址为 `world-football-weekly.pages.dev`。
 
 ## 数据规范
 
