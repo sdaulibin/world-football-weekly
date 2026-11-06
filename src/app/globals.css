@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  /* 夜场绿茵主题（草坪绿 + 金色荣耀） */
+  --color-pitch-50: #f1f9f4;
+  --color-pitch-100: #dff2e5;
+  --color-pitch-200: #c0e5cd;
+  --color-pitch-300: #93d1ab;
+  --color-pitch-400: #5eb484;
+  --color-pitch-500: #3a9a67;
+  --color-pitch-600: #277c50;
+  --color-pitch-700: #1f6341;
+  --color-pitch-800: #1b4f36;
+  --color-pitch-900: #17412d;
+  --color-pitch-950: #0b2418;
+
+  --color-gold-100: #fdf3d7;
+  --color-gold-200: #fbe6ab;
+  --color-gold-400: #f0b429;
+  --color-gold-500: #de9400;
+  --color-gold-600: #b87a00;
+  --color-gold-700: #94600a;
+
+  --font-sans:
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC",
+    system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:
+    ui-monospace, "SF Mono", "JetBrains Mono", "Menlo", "Cascadia Mono",
+    monospace;
+}
+
+body {
+  background-color: var(--color-pitch-50);
+  color: var(--color-pitch-950);
+}
+
+::selection {
+  background-color: var(--color-pitch-200);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── 首页 Hero（夜场氛围） ──────────────────────── */
+
+/* 草坪割草条纹 */
+.pitch-stripes {
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.06) 0 72px,
+    transparent 72px 144px
+  );
+}
+
+/* 泛光灯（只用 background-image，避免覆盖同元素的背景色） */
+.floodlight {
+  background-image:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(240, 180, 41, 0.14), transparent 70%),
+    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(90, 180, 132, 0.18), transparent 70%);
+}
+
+/* 入场浮现 */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-up {
+    animation: none;
+  }
+}

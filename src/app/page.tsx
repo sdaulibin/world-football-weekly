@@ -1,0 +1,192 @@
+import Link from "next/link";
+import { allItems, segments, site } from "@/data";
+import { EXPLORER_THRESHOLD } from "@/lib/utils";
+import { SegmentCard } from "@/components/SegmentCard";
+import { VerifyBadge } from "@/components/Badges";
+
+/** 首页精选专题（板块 slug + 条目标题） */
+const featured = [
+  { segment: "specials", item: "贝影" },
+  { segment: "absolute-stars", item: "亨利：海布里之王" },
+  { segment: "top10", item: "世界足坛十大进球" },
+  { segment: "farewells", item: "罗纳尔多退役特辑" },
+] as const;
+
+export default function HomePage() {
+  const items = allItems();
+  const musicCount = items.filter((x) => x.item.music).length;
+  const featuredEntries = featured
+    .map(({ segment, item }) => {
+      const seg = segments.find((s) => s.slug === segment);
+      const it = seg?.items.find((i) => i.title === item);
+      return seg && it ? { seg, it } : null;
+    })
+    .filter((x): x is NonNullable<typeof x> => x !== null);
+
+  return (
+    <>
+      {/* ── Hero：夜场开球 ── */}
+      <section className="floodlight relative overflow-hidden bg-pitch-950 text-white">
+        <div aria-hidden className="pitch-stripes absolute inset-0" />
+        <div className="relative mx-auto max-w-6xl px-4 py-24 sm:py-28">
+          <p className="fade-up font-mono text-sm tracking-widest text-gold-400">
+            CCTV5 · {site.show.launchLabel}
+          </p>
+          <h1
+            className="fade-up mt-4 text-5xl font-black tracking-tight sm:text-6xl"
+            style={{ animationDelay: "80ms" }}
+          >
+            天下足球
+            <span className="ml-3 text-2xl font-bold text-pitch-300 sm:text-3xl">
+              经典档案
+            </span>
+          </h1>
+          <p
+            className="fade-up mt-5 max-w-2xl text-lg leading-relaxed text-pitch-100/90"
+            style={{ animationDelay: "160ms" }}
+          >
+            {site.tagline}
+          </p>
+          <div
+            className="fade-up mt-8 flex flex-wrap gap-3"
+            style={{ animationDelay: "240ms" }}
+          >
+            <Link
+              href="/segments/"
+              className="rounded-xl bg-pitch-500 px-5 py-2.5 font-medium text-white transition-colors hover:bg-pitch-400"
+            >
+              浏览板块档案
+            </Link>
+            <Link
+              href="/timeline/"
+              className="rounded-xl bg-white/10 px-5 py-2.5 font-medium text-white ring-1 ring-white/20 transition-colors hover:bg-white/15"
+            >
+              2000 → 至今大事记
+            </Link>
+          </div>
+
+          <dl
+            className="fade-up mt-14 grid max-w-2xl grid-cols-2 gap-6 sm:grid-cols-4"
+            style={{ animationDelay: "320ms" }}
+          >
+            {[
+              { label: "收录板块", value: segments.length },
+              { label: "收录条目", value: items.length },
+              { label: "记忆配乐", value: musicCount },
+              { label: "覆盖年代", value: 26 },
+            ].map((s) => (
+              <div key={s.label}>
+                <dt className="text-xs text-pitch-300">{s.label}</dt>
+                <dd className="mt-1 font-mono text-3xl font-bold tabular-nums">
+                  {s.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* ── 板块总览 ── */}
+      <section className="mx-auto max-w-6xl px-4 py-16">
+        <div className="flex items-end justify-between">
+          <div>
+            <h2 className="text-2xl font-bold text-pitch-950">板块总览</h2>
+            <p className="mt-2 text-sm text-slate-500">
+              从《绝对巨星》到大赛特辑，25 年节目的骨架都在这里。
+            </p>
+          </div>
+          <Link
+            href="/segments/"
+            className="hidden text-sm font-medium text-pitch-600 hover:underline sm:block"
+          >
+            全部板块 →
+          </Link>
+        </div>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {segments.slice(0, 6).map((s) => (
+            <SegmentCard key={s.slug} segment={s} />
+          ))}
+        </div>
+      </section>
+
+      {/* ── 经典专题精选 ── */}
+      <section className="border-y border-pitch-100 bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <h2 className="text-2xl font-bold text-pitch-950">经典专题精选</h2>
+          <p className="mt-2 text-sm text-slate-500">
+            球迷社区传诵度最高的几期，点开条目了解文案、配乐与视频线索。
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {featuredEntries.map(({ seg, it }) => {
+              // 大板块（如绝对巨星）用 ?q= 深链到浏览器组件，小板块用锚点
+              const href =
+                seg.items.length > EXPLORER_THRESHOLD
+                  ? `/segments/${seg.slug}/?q=${encodeURIComponent(it.subject ?? it.title)}`
+                  : `/segments/${seg.slug}/#${encodeURIComponent(it.title)}`;
+              return (
+                <Link
+                  key={it.title}
+                  href={href}
+                  className="group rounded-2xl border border-pitch-100 bg-pitch-50 p-5 transition-all hover:-translate-y-0.5 hover:shadow-md"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="rounded bg-pitch-600 px-2 py-0.5 text-[11px] font-medium text-white">
+                      {seg.name}
+                    </span>
+                    <VerifyBadge verified={it.verified} />
+                    {it.aired && (
+                      <span className="font-mono text-xs text-slate-400">
+                        {it.aired}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="mt-3 text-lg font-bold text-pitch-950 group-hover:text-pitch-600">
+                    {it.subject ?? it.title}
+                  </h3>
+                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-600">
+                    {it.summary}
+                  </p>
+                  {it.quote && (
+                    <p className="mt-3 border-l-2 border-gold-400 pl-3 text-sm italic leading-relaxed text-slate-500">
+                      {it.quote}
+                    </p>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 数据说明 ── */}
+      <section className="mx-auto max-w-6xl px-4 py-16">
+        <div className="rounded-2xl bg-pitch-950 p-8 text-white sm:p-10">
+          <h2 className="text-xl font-bold">这是一份「结构优先」的档案</h2>
+          <p className="mt-3 max-w-3xl leading-relaxed text-pitch-100/90">
+            《天下足球》播出 25 年，各板块的名称、期数与首播时间在公开资料中常不一致。
+            本站先建立可靠的板块框架，再逐条填充条目；凡是未经官方渠道确认的信息，
+            一律打上
+            <span className="mx-1 rounded bg-gold-400/20 px-1.5 py-0.5 text-xs font-medium text-gold-400">
+              待核实
+            </span>
+            徽章。欢迎补充线索、指正错误。
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3 text-sm">
+            <Link
+              href="/about/"
+              className="rounded-lg bg-white/10 px-4 py-2 font-medium ring-1 ring-white/20 hover:bg-white/15"
+            >
+              数据规范与免责声明
+            </Link>
+            <Link
+              href="/stats/"
+              className="rounded-lg bg-white/10 px-4 py-2 font-medium ring-1 ring-white/20 hover:bg-white/15"
+            >
+              档案统计
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

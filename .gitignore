@@ -1,0 +1,36 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# env files
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+.chrome-profile/
+
+# 调研临时文件
+.research/
+.shots/
+.chrome-profile/
+.DS_Store
+
+# 抓取用临时数据
+.full2.json
+.fulls.json
