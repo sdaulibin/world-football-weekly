@@ -63,6 +63,18 @@ npm run build   # 静态导出至 out/
 npm run lint    # ESLint
 ```
 
+## 部署（Cloudflare Pages）
+
+Git 集成部署：Cloudflare Dashboard → Workers & Pages → Create → Pages →
+连接 GitHub 仓库 `sdaulibin/world-football-weekly`，构建配置：
+
+- **框架预设**：Next.js（静态 HTML 导出）/ 或自定义
+- **构建命令**：`npx next build`
+- **构建输出目录**：`out`
+- **Node 版本**：22（仓库已带 `.nvmrc`；如需环境变量则设 `NODE_VERSION=22`）
+
+保存后每次 `git push` 自动构建部署。
+
 ## 数据规范
 
 - 所有内容集中在 `src/data/`，页面只负责展示；补充条目即编辑数据文件。
