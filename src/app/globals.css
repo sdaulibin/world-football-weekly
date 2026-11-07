@@ -1,7 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  /* 夜场绿茵主题（草坪绿 + 金色荣耀） */
+  /*
+   * 夜场转播主题（Night Broadcast）：
+   * 深绿黑画布 = 夜场球场，泛光灯氛围，记分牌等宽数字，金色荣耀点缀。
+   * 暗色深度靠亮度阶梯与发丝线描边，不用投影。
+   */
+
+  /* 画布与面板（亮度阶梯） */
+  --color-night-950: #04130c;
+  --color-night-900: #082013;
+  --color-night-800: #0d2a1b;
+  --color-night-700: #143424;
+
+  /* 草坪绿（交互与活力） */
   --color-pitch-50: #f1f9f4;
   --color-pitch-100: #dff2e5;
   --color-pitch-200: #c0e5cd;
@@ -14,12 +26,23 @@
   --color-pitch-900: #17412d;
   --color-pitch-950: #0b2418;
 
+  /* 金色荣耀（经典与待核实） */
   --color-gold-100: #fdf3d7;
   --color-gold-200: #fbe6ab;
+  --color-gold-300: #ffd88a;
   --color-gold-400: #f0b429;
   --color-gold-500: #de9400;
   --color-gold-600: #b87a00;
   --color-gold-700: #94600a;
+
+  /* 墨色文字（绿调中性，按暗色可读性分级） */
+  --color-ink: #e9f4ee;
+  --color-ink-muted: #a8c3b6;
+  --color-ink-faint: #74927f;
+
+  /* 发丝线（暗色描边） */
+  --color-line: rgba(233, 244, 238, 0.08);
+  --color-line-strong: rgba(233, 244, 238, 0.16);
 
   --font-sans:
     "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC",
@@ -30,34 +53,34 @@
 }
 
 body {
-  background-color: var(--color-pitch-50);
-  color: var(--color-pitch-950);
+  background-color: var(--color-night-950);
+  color: var(--color-ink);
 }
 
 ::selection {
-  background-color: var(--color-pitch-200);
+  background-color: rgba(94, 180, 132, 0.4);
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* ── 首页 Hero（夜场氛围） ──────────────────────── */
+/* ── 夜场氛围（只用 background-image，避免覆盖同元素的背景色） ── */
 
 /* 草坪割草条纹 */
 .pitch-stripes {
   background-image: repeating-linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.06) 0 72px,
+    rgba(255, 255, 255, 0.045) 0 72px,
     transparent 72px 144px
   );
 }
 
-/* 泛光灯（只用 background-image，避免覆盖同元素的背景色） */
+/* 泛光灯 */
 .floodlight {
   background-image:
-    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(240, 180, 41, 0.14), transparent 70%),
-    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(90, 180, 132, 0.18), transparent 70%);
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(240, 180, 41, 0.12), transparent 70%),
+    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(94, 180, 132, 0.14), transparent 70%);
 }
 
 /* 入场浮现 */

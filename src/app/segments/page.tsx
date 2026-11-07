@@ -17,8 +17,12 @@ export default function SegmentsPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
       <header>
-        <h1 className="text-3xl font-bold text-pitch-950">板块档案</h1>
-        <p className="mt-3 max-w-2xl leading-relaxed text-slate-600">
+        <div className="flex items-center gap-3">
+          <span aria-hidden className="h-2 w-2 bg-gold-400" />
+          <h1 className="text-3xl font-bold text-ink">板块档案</h1>
+          <span aria-hidden className="h-px min-w-8 flex-1 bg-line" />
+        </div>
+        <p className="mt-4 max-w-2xl leading-relaxed text-ink-muted">
           按「常设板块 / 特别制作 / 大赛特辑」三类组织。每个板块页内附条目清单、
           经典文案、配乐线索与视频入口。
         </p>
@@ -29,9 +33,10 @@ export default function SegmentsPage() {
         if (list.length === 0) return null;
         return (
           <section key={g.kind} className="mt-12">
-            <div className="flex items-baseline gap-3">
-              <h2 className="text-xl font-bold text-pitch-900">{g.label}</h2>
-              <span className="text-sm text-slate-400">{g.hint}</span>
+            <div className="flex flex-wrap items-baseline gap-3">
+              <h2 className="text-xl font-bold text-ink">{g.label}</h2>
+              <span className="text-sm text-ink-faint">{g.hint}</span>
+              <span aria-hidden className="h-px min-w-8 flex-1 self-center bg-line" />
             </div>
             <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {list.map((s) => (

@@ -35,12 +35,12 @@ export default async function SegmentPage({ params }: PageProps) {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10">
-      <nav className="text-sm text-slate-400">
-        <Link href="/" className="hover:text-pitch-700">
+      <nav className="text-sm text-ink-faint">
+        <Link href="/" className="hover:text-ink">
           首页
         </Link>
         <span className="mx-2">/</span>
-        <Link href="/segments/" className="hover:text-pitch-700">
+        <Link href="/segments/" className="hover:text-ink">
           板块档案
         </Link>
       </nav>
@@ -48,28 +48,28 @@ export default async function SegmentPage({ params }: PageProps) {
       <header className="mt-4">
         <div className="flex flex-wrap items-center gap-2">
           <KindBadge kind={segment.kind} />
-          <span className="font-mono text-xs text-slate-400">{segment.era}</span>
+          <span className="font-mono text-xs tracking-wider text-ink-faint">{segment.era}</span>
         </div>
-        <h1 className="mt-3 text-4xl font-bold text-pitch-950">{segment.name}</h1>
-        <p className="mt-3 text-lg text-slate-600">{segment.tagline}</p>
+        <h1 className="mt-3 text-4xl font-bold text-ink">{segment.name}</h1>
+        <p className="mt-3 text-lg text-ink-muted">{segment.tagline}</p>
       </header>
 
       {segment.signature && (
-        <blockquote className="mt-6 rounded-r-xl border-l-4 border-gold-400 bg-gold-100/50 px-5 py-4 text-sm leading-relaxed text-slate-600">
+        <blockquote className="mt-6 rounded-xl bg-gold-400/10 px-5 py-4 text-sm leading-relaxed text-gold-200/90">
           {segment.signature}
         </blockquote>
       )}
 
-      <article className="mt-6 space-y-4 leading-loose text-slate-600">
+      <article className="mt-6 space-y-4 leading-loose text-ink-muted">
         {segment.description.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
       </article>
 
-      <div className="mt-6 rounded-xl bg-pitch-50 px-4 py-3 text-xs text-slate-500">
-        共收录 <span className="font-mono font-bold text-pitch-700">{segment.items.length}</span>{" "}
+      <div className="mt-6 rounded-xl border border-line bg-night-900 px-4 py-3 text-xs text-ink-muted">
+        共收录 <span className="font-mono font-bold text-pitch-300">{segment.items.length}</span>{" "}
         条条目，其中已核实 {verifiedCount} 条。标注
-        <span className="mx-1 font-medium text-gold-700">待核实</span>
+        <span className="mx-1 font-medium text-gold-300">待核实</span>
         的内容以节目实际播出为准。本站不存储视频，条目内链接仅为观看入口。
       </div>
 
@@ -81,7 +81,7 @@ export default async function SegmentPage({ params }: PageProps) {
               href={l.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-pitch-950 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-pitch-700"
+              className="rounded-full bg-pitch-500/15 px-4 py-2 text-xs font-medium text-pitch-300 ring-1 ring-pitch-500/30 transition-colors hover:bg-pitch-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pitch-400/60"
             >
               ▶ {l.label} ↗
             </a>
@@ -91,7 +91,11 @@ export default async function SegmentPage({ params }: PageProps) {
 
       {segment.items.length > EXPLORER_THRESHOLD ? (
         <section className="mt-10">
-          <h2 className="text-xl font-bold text-pitch-900">全期条目</h2>
+          <div className="flex items-center gap-3">
+            <span aria-hidden className="h-2 w-2 bg-gold-400" />
+            <h2 className="text-xl font-bold text-ink">全期条目</h2>
+            <span aria-hidden className="h-px min-w-8 flex-1 bg-line" />
+          </div>
           <div className="mt-5">
             <EpisodeExplorer items={segment.items} />
           </div>
@@ -102,33 +106,33 @@ export default async function SegmentPage({ params }: PageProps) {
             <article
               key={item.title}
               id={encodeURIComponent(item.title)}
-              className="scroll-mt-20 rounded-2xl border border-pitch-100 bg-white p-6 shadow-sm"
+              className="scroll-mt-20 rounded-xl border border-line bg-night-900 p-6"
             >
               <div className="flex flex-wrap items-center gap-2">
-                <h2 className="text-xl font-bold text-pitch-950">{item.title}</h2>
+                <h2 className="text-xl font-bold text-ink">{item.title}</h2>
                 <VerifyBadge verified={item.verified} />
                 {item.aired && (
-                  <span className="font-mono text-xs text-slate-400">
+                  <span className="font-mono text-xs text-ink-faint">
                     {item.aired}
                   </span>
                 )}
               </div>
               {item.subject && item.subject !== item.title && (
-                <p className="mt-1 text-sm font-medium text-pitch-700">
+                <p className="mt-1 text-sm font-medium text-pitch-300">
                   {item.subject}
                 </p>
               )}
               {item.summary && (
-                <p className="mt-3 leading-loose text-slate-600">{item.summary}</p>
+                <p className="mt-3 leading-loose text-ink-muted">{item.summary}</p>
               )}
 
               {item.quote && (
-                <blockquote className="mt-4 rounded-r-xl border-l-4 border-gold-400 bg-gold-100/40 px-4 py-3 text-sm italic leading-relaxed text-slate-600">
+                <blockquote className="mt-4 rounded-xl bg-gold-400/10 px-4 py-3 text-sm italic leading-relaxed text-gold-200/90">
                   <p className="whitespace-pre-wrap">
                     「{item.quoteFull ?? item.quote}」
                   </p>
                   {item.quoteFull && (
-                    <span className="mt-2 block text-[11px] not-italic tracking-wide text-gold-700/70">
+                    <span className="mt-2 block text-[11px] not-italic tracking-widest text-gold-300/70">
                       经典文案 · 全文
                     </span>
                   )}
@@ -136,8 +140,8 @@ export default async function SegmentPage({ params }: PageProps) {
               )}
 
               {item.music && (
-                <p className="mt-3 text-sm text-slate-500">
-                  <span className="mr-1 text-pitch-600">♪</span>
+                <p className="mt-3 text-sm text-ink-muted">
+                  <span className="mr-1.5 text-gold-300">♪</span>
                   {item.music}
                 </p>
               )}
@@ -145,7 +149,7 @@ export default async function SegmentPage({ params }: PageProps) {
               {item.videos && <WatchLinks videos={item.videos} />}
 
               {item.note && (
-                <p className="mt-3 rounded-lg bg-slate-50 px-3 py-2 text-xs leading-relaxed text-slate-400">
+                <p className="mt-3 rounded-lg bg-night-800/70 px-3 py-2 text-xs leading-relaxed text-ink-faint">
                   备注：{item.note}
                 </p>
               )}
@@ -154,16 +158,16 @@ export default async function SegmentPage({ params }: PageProps) {
         </section>
       )}
 
-      <nav className="mt-12 flex items-center justify-between gap-4 border-t border-pitch-100 pt-6 text-sm">
+      <nav className="mt-12 flex items-center justify-between gap-4 border-t border-line pt-6 text-sm">
         <Link
           href={`/segments/${prev.slug}/`}
-          className="text-slate-500 hover:text-pitch-700"
+          className="text-ink-muted transition-colors hover:text-ink"
         >
           ← {prev.name}
         </Link>
         <Link
           href={`/segments/${next.slug}/`}
-          className="text-slate-500 hover:text-pitch-700"
+          className="text-ink-muted transition-colors hover:text-ink"
         >
           {next.name} →
         </Link>

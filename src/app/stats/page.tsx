@@ -34,8 +34,12 @@ export default function StatsPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12">
       <header>
-        <h1 className="text-3xl font-bold text-pitch-950">档案统计</h1>
-        <p className="mt-3 leading-relaxed text-slate-600">
+        <div className="flex items-center gap-3">
+          <span aria-hidden className="h-2 w-2 bg-gold-400" />
+          <h1 className="text-3xl font-bold text-ink">档案统计</h1>
+          <span aria-hidden className="h-px min-w-8 flex-1 bg-line" />
+        </div>
+        <p className="mt-4 leading-relaxed text-ink-muted">
           收录进度一目了然。所有数字由数据文件实时计算，补充条目后自动更新。
         </p>
       </header>
@@ -50,29 +54,33 @@ export default function StatsPage() {
         ].map((s) => (
           <div
             key={s.label}
-            className="rounded-2xl border border-pitch-100 bg-white p-4 text-center shadow-sm"
+            className="rounded-xl border border-line bg-night-900 p-4 text-center"
           >
-            <dd className="font-mono text-3xl font-bold tabular-nums text-pitch-700">
+            <dd className="font-mono text-3xl font-bold tabular-nums text-pitch-300">
               {s.value}
             </dd>
-            <dt className="mt-1 text-xs text-slate-400">{s.label}</dt>
+            <dt className="mt-1 text-xs text-ink-faint">{s.label}</dt>
           </div>
         ))}
       </dl>
 
       {/* 条目年代分布 */}
       <section className="mt-12">
-        <h2 className="text-xl font-bold text-pitch-900">条目年代分布</h2>
-        <p className="mt-1 text-sm text-slate-400">
+        <div className="flex items-center gap-3">
+          <span aria-hidden className="h-2 w-2 bg-gold-400" />
+          <h2 className="text-xl font-bold text-ink">条目年代分布</h2>
+          <span aria-hidden className="h-px min-w-8 flex-1 bg-line" />
+        </div>
+        <p className="mt-2 text-sm text-ink-faint">
           依据条目首播时间（精度不一），未标注日期的条目单独归类。
         </p>
         <div className="mt-5 space-y-3">
           {decadeRows.map(([decade, count]) => (
             <div key={decade} className="flex items-center gap-3">
-              <span className="w-16 font-mono text-sm text-slate-500">
+              <span className="w-16 font-mono text-sm text-ink-muted">
                 {decade}
               </span>
-              <div className="h-3 flex-1 overflow-hidden rounded-full bg-pitch-100">
+              <div className="h-3 flex-1 overflow-hidden rounded-full bg-night-800">
                 <div
                   className="h-full rounded-full bg-pitch-500"
                   style={{
@@ -80,7 +88,7 @@ export default function StatsPage() {
                   }}
                 />
               </div>
-              <span className="w-8 text-right font-mono text-sm tabular-nums text-slate-500">
+              <span className="w-8 text-right font-mono text-sm tabular-nums text-ink-muted">
                 {count}
               </span>
             </div>
@@ -90,23 +98,27 @@ export default function StatsPage() {
 
       {/* 各板块规模 */}
       <section className="mt-12">
-        <h2 className="text-xl font-bold text-pitch-900">各板块收录规模</h2>
+        <div className="flex items-center gap-3">
+          <span aria-hidden className="h-2 w-2 bg-gold-400" />
+          <h2 className="text-xl font-bold text-ink">各板块收录规模</h2>
+          <span aria-hidden className="h-px min-w-8 flex-1 bg-line" />
+        </div>
         <div className="mt-5 space-y-3">
           {segments.map((s) => (
             <div key={s.slug} className="flex items-center gap-3">
               <Link
                 href={`/segments/${s.slug}/`}
-                className="w-40 shrink-0 truncate text-sm font-medium text-pitch-700 hover:underline"
+                className="w-40 shrink-0 truncate text-sm font-medium text-pitch-300 hover:underline"
               >
                 {s.name}
               </Link>
-              <div className="h-3 flex-1 overflow-hidden rounded-full bg-pitch-100">
+              <div className="h-3 flex-1 overflow-hidden rounded-full bg-night-800">
                 <div
-                  className="h-full rounded-full bg-pitch-600"
+                  className="h-full rounded-full bg-pitch-500"
                   style={{ width: `${(s.items.length / maxSegment) * 100}%` }}
                 />
               </div>
-              <span className="w-8 text-right font-mono text-sm tabular-nums text-slate-500">
+              <span className="w-8 text-right font-mono text-sm tabular-nums text-ink-muted">
                 {s.items.length}
               </span>
             </div>
@@ -116,20 +128,24 @@ export default function StatsPage() {
 
       {/* 记忆配乐 */}
       <section className="mt-12">
-        <h2 className="text-xl font-bold text-pitch-900">记忆配乐清单</h2>
-        <p className="mt-1 text-sm text-slate-400">
+        <div className="flex items-center gap-3">
+          <span aria-hidden className="h-2 w-2 bg-gold-400" />
+          <h2 className="text-xl font-bold text-ink">记忆配乐清单</h2>
+          <span aria-hidden className="h-px min-w-8 flex-1 bg-line" />
+        </div>
+        <p className="mt-2 text-sm text-ink-faint">
           BGM 是天下足球的灵魂。下列配乐线索多为球迷社区整理，以「待核实」口径收录。
         </p>
-        <ul className="mt-5 divide-y divide-pitch-100 overflow-hidden rounded-2xl border border-pitch-100 bg-white">
+        <ul className="mt-5 divide-y divide-line overflow-hidden rounded-xl border border-line bg-night-900">
           {musicItems.map(({ segment, item }) => (
             <li
               key={`${segment.slug}-${item.title}`}
               className="flex flex-wrap items-baseline gap-x-3 gap-y-1 px-5 py-3 text-sm"
             >
-              <span className="text-pitch-600">♪</span>
-              <span className="font-medium text-pitch-950">{item.music}</span>
-              <span className="text-slate-400">
-                —《{item.title}》· {segment.name}
+              <span className="text-gold-300">♪</span>
+              <span className="font-medium text-ink">{item.music}</span>
+              <span className="text-ink-faint">
+                ·《{item.title}》· {segment.name}
               </span>
             </li>
           ))}

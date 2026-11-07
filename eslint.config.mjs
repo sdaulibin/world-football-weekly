@@ -7,8 +7,12 @@ const eslintConfig = defineConfig([
   ...nextTs,
   globalIgnores([
     ".next/**",
+    ".chrome-profile/**",
+    ".shots/**",
+    ".wrangler/**",
     "out/**",
     "build/**",
+    "research/**",
     "next-env.d.ts",
   ]),
 ]);

@@ -36,7 +36,7 @@ export function EpisodeThumb({
 
   return (
     <div
-      className="relative aspect-video w-full overflow-hidden rounded-xl"
+      className="relative aspect-video w-full overflow-hidden rounded-xl ring-1 ring-inset ring-white/10"
       style={{
         background: `linear-gradient(135deg, ${tone.from}, ${tone.to})`,
       }}
