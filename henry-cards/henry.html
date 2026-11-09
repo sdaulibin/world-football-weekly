@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<!-- ==================================================================
+     SOCIAL CARDS TEMPLATE · parchment design system
+     小红书 / X 配图：1242 x 1660（3:4），每个 <section class="card"> 就是一张图
+     底色：在 <body> 上写 paper-ink / paper-olive / paper-espresso / paper-pine /
+           paper-teal / paper-crimson / paper-char，不写就是默认的 parchment
+     一套图只用一种底色；原文照搬，断行问题用排版解决，不改字
+     ================================================================== -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Kami">
+<title>当时光的列车缓缓驶过酋长球场</title>
+<meta name="author" content="{{作者}}">
+<style>
+  @font-face {
+    font-family: "TsangerJinKai02";
+    src: url("../fonts/TsangerJinKai02-W04.ttf") format("truetype"),
+       url("https://cdn.jsdelivr.net/gh/tw93/Kami@main/assets/fonts/TsangerJinKai02-W04.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "TsangerJinKai02";
+    src: url("../fonts/TsangerJinKai02-W05.ttf") format("truetype"),
+       url("https://cdn.jsdelivr.net/gh/tw93/Kami@main/assets/fonts/TsangerJinKai02-W05.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @page {
+    size: 1242px 1660px;
+    margin: 0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment:  #f5f4ed;
+    --near-black: #141413;
+    --brand:      #1B365D;
+    --stone:      #6b6a64;
+
+    /* Social palettes, mirrored from references/social-palettes.json. */
+    --social-parchment-line: #d1d0ca;
+    --social-ink-bg:         #1B365D;
+    --social-ink-fg:         #f3f1e8;
+    --social-ink-accent:     #b9c6d8;
+    --social-ink-muted:      #8e9db3;
+    --social-ink-line:       #3e5473;
+    --social-olive-bg:       #2b3326;
+    --social-olive-fg:       #ece8da;
+    --social-olive-accent:   #bdb38c;
+    --social-olive-muted:    #9a9883;
+    --social-olive-line:     #4a5043;
+    --social-espresso-bg:    #3a2a20;
+    --social-espresso-fg:    #f2e9dc;
+    --social-espresso-accent:#d9b48a;
+    --social-espresso-muted: #a8957f;
+    --social-espresso-line:  #57493e;
+    --social-pine-bg:        #1c3a29;
+    --social-pine-fg:        #eef0e6;
+    --social-pine-accent:    #b5cfa4;
+    --social-pine-muted:     #8fa593;
+    --social-pine-line:      #3e5747;
+    --social-teal-bg:        #134857;
+    --social-teal-fg:        #eef2ef;
+    --social-teal-accent:    #a8d0cf;
+    --social-teal-muted:     #8fb0b4;
+    --social-teal-line:      #36636f;
+    --social-crimson-bg:     #5a1f17;
+    --social-crimson-fg:     #f4ebe2;
+    --social-crimson-accent: #e6bca6;
+    --social-crimson-muted:  #bd968a;
+    --social-crimson-line:   #734037;
+    --social-char-bg:        #1e1d1b;
+    --social-char-fg:        #f2f0ea;
+    --social-char-accent:    #d4c4a0;
+    --social-char-muted:     #a8a49a;
+    --social-char-line:      #403f3c;
+
+    /* Latin letters and digits in Charter, Chinese falls through to TsangerJinKai02. */
+    --serif: Charter, Georgia, "TsangerJinKai02", "Source Han Serif SC", "Source Han Serif CN", "Noto Serif CJK SC", "Noto Serif SC", "Songti SC", "STSong", serif;
+    --sans:  var(--serif);
+  }
+
+  /* Default paper: Kami parchment with the ink-blue accent. Another paper is
+     one class on <body>, which recolors the same four roles. */
+  body { font-family: var(--serif); color: var(--near-black); }
+  body.paper-ink .card { background: var(--social-ink-bg); color: var(--social-ink-fg); }
+  body.paper-ink .meta, body.paper-ink .foot { color: var(--social-ink-muted); }
+  body.paper-ink .poem, body.paper-ink .item .n, body.paper-ink .body strong { color: var(--social-ink-accent); }
+  body.paper-ink .foot { border-top-color: var(--social-ink-line); }
+  body.paper-olive .card { background: var(--social-olive-bg); color: var(--social-olive-fg); }
+  body.paper-olive .meta, body.paper-olive .foot { color: var(--social-olive-muted); }
+  body.paper-olive .poem, body.paper-olive .item .n, body.paper-olive .body strong { color: var(--social-olive-accent); }
+  body.paper-olive .foot { border-top-color: var(--social-olive-line); }
+  body.paper-espresso .card { background: var(--social-espresso-bg); color: var(--social-espresso-fg); }
+  body.paper-espresso .meta, body.paper-espresso .foot { color: var(--social-espresso-muted); }
+  body.paper-espresso .poem, body.paper-espresso .item .n, body.paper-espresso .body strong { color: var(--social-espresso-accent); }
+  body.paper-espresso .foot { border-top-color: var(--social-espresso-line); }
+  body.paper-pine .card { background: var(--social-pine-bg); color: var(--social-pine-fg); }
+  body.paper-pine .meta, body.paper-pine .foot { color: var(--social-pine-muted); }
+  body.paper-pine .poem, body.paper-pine .item .n, body.paper-pine .body strong { color: var(--social-pine-accent); }
+  body.paper-pine .foot { border-top-color: var(--social-pine-line); }
+  body.paper-teal .card { background: var(--social-teal-bg); color: var(--social-teal-fg); }
+  body.paper-teal .meta, body.paper-teal .foot { color: var(--social-teal-muted); }
+  body.paper-teal .poem, body.paper-teal .item .n, body.paper-teal .body strong { color: var(--social-teal-accent); }
+  body.paper-teal .foot { border-top-color: var(--social-teal-line); }
+  body.paper-crimson .card { background: var(--social-crimson-bg); color: var(--social-crimson-fg); }
+  body.paper-crimson .meta, body.paper-crimson .foot { color: var(--social-crimson-muted); }
+  body.paper-crimson .poem, body.paper-crimson .item .n, body.paper-crimson .body strong { color: var(--social-crimson-accent); }
+  body.paper-crimson .foot { border-top-color: var(--social-crimson-line); }
+  body.paper-char .card { background: var(--social-char-bg); color: var(--social-char-fg); }
+  body.paper-char .meta, body.paper-char .foot { color: var(--social-char-muted); }
+  body.paper-char .poem, body.paper-char .item .n, body.paper-char .body strong { color: var(--social-char-accent); }
+  body.paper-char .foot { border-top-color: var(--social-char-line); }
+  /* Light text on a dark paper rasterizes thinner than the browser previews it,
+     so every dark paper sets its text in W05. */
+  body[class*="paper-"]:not(.paper-parchment) { font-weight: 500; }
+
+  /* One card = one page = one image, exactly 1242 x 1660. Content that grows
+     into the footer is reported by --deliver («card fit»): split the card,
+     never shrink the type. */
+  .card {
+    width: 1242px;
+    height: 1660px;
+    padding: 120px 96px 84px;
+    background: var(--parchment);
+    color: var(--near-black);
+    position: relative;
+    break-after: page;
+  }
+  .card:last-child { break-after: auto; }
+
+  .meta {
+    font-size: 30px;
+    line-height: 1.4;
+    letter-spacing: 1.2px;
+    color: var(--stone);
+  }
+
+  /* Cover headline: the post title, wrapping by itself. Narrow max-width
+     (not <br>) to move a short last line. */
+  h1 {
+    max-width: 7.3em;
+    margin-top: 72px;
+    font-size: 104px;
+    font-weight: 500;
+    line-height: 1.28;
+    letter-spacing: 1px;
+  }
+  .poem {
+    margin-top: 48px;
+    font-size: 46px;
+    line-height: 1.4;
+    letter-spacing: 5.5px;
+    color: var(--brand);
+  }
+  .photo {
+    position: absolute;
+    left: 96px;
+    right: 96px;
+    top: 640px;
+    bottom: 96px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+  }
+
+  h2 {
+    margin-top: 56px;
+    font-size: 80px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 3px;
+  }
+  .body {
+    margin-top: 44px;
+    font-size: 44px;
+    line-height: 1.75;
+  }
+  .body strong { font-weight: 500; color: var(--brand); }
+
+  /* Orphan repair: padding-right moves the wrap point, the words stay as written. */
+  .pr132 { padding-right: 132px; }
+
+  .item {
+    display: flex;
+    margin-top: 48px;
+  }
+  .item .n {
+    flex: 0 0 120px;
+    font-family: Charter, Georgia, var(--serif);
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--brand);
+  }
+  .item p {
+    flex: 1;
+    font-size: 42px;
+    line-height: 1.68;
+  }
+
+  .shot {
+    margin-top: 56px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .shot img { display: block; width: 100%; }
+
+  .foot {
+    position: absolute;
+    left: 96px;
+    right: 96px;
+    bottom: 84px;
+    padding-top: 30px;
+    border-top: 1px solid var(--social-parchment-line);
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--stone);
+  }
+</style>
+</head>
+<body class="paper-crimson">
+
+<!-- ========== 封面 ========== -->
+<section class="card cover">
+  <div class="meta">天下足球 · 谁与争锋</div>
+  <h1>当时光的列车缓缓驶过酋长球场</h1>
+  <p class="poem">谁与争锋</p>
+  <div class="photo"><img src="henry-photo.jpg" alt="蒂埃里·亨利" style="object-position: center 30%;"></div>
+</section>
+
+<!-- ========== 通往海布里的快车 ========== -->
+<section class="card">
+  <div class="meta">当时光的列车缓缓驶过酋长球场</div>
+  <h2>通往海布里的快车</h2>
+  <p class="body">还是回到伦敦吧，通往海布里的快车一趟一趟的运行着。这里面总会走过客，迎来新生。</p>
+  <p class="body">06 年 5 月 7 日，即将送走的过客正是 93 岁的枪手圣地海布里。队长亨利上演帽子戏法，为这座拥有无限辉煌的球场告别。看台上的伊恩·赖特激动万分，他是阿森纳的传奇，又被今天的传奇亨利超越。</p>
+  <p class="body pr132">1913 至 2006，这是亨利和所有枪手赠予海布里的最后之役。</p>
+  <div class="foot">当时光的列车缓缓驶过酋长球场</div>
+</section>
+
+<!-- ========== 枪手时代的第 8 个年头 ========== -->
+<section class="card">
+  <div class="meta">当时光的列车缓缓驶过酋长球场</div>
+  <h2>枪手时代的第 8 个年头</h2>
+  <div class="item"><div class="n" aria-hidden="true">01</div><p>他是队长</p></div>
+  <div class="item"><div class="n" aria-hidden="true">02</div><p>他是领袖</p></div>
+  <div class="item"><div class="n" aria-hidden="true">03</div><p>他是传奇</p></div>
+  <div class="item"><div class="n" aria-hidden="true">04</div><p>他是射手</p></div>
+  <div class="item"><div class="n" aria-hidden="true">05</div><p>他是枪王之王</p></div>
+  <div class="foot">当时光的列车缓缓驶过酋长球场</div>
+</section>
+
+<!-- ========== 最后一战 ========== -->
+<section class="card">
+  <div class="meta">当时光的列车缓缓驶过酋长球场</div>
+  <h2>最后一战</h2>
+  <p class="body">2007 年 3 月 7 日，亨利在欧冠对阵埃因霍温的比赛中替补登场。当时谁都不会想到，这竟然成为了他在阿森纳主场的最后一战。没有进球，没有力挽狂澜。脱下球衣的那一刻，亨利已经无形中踏上了那辆远去的列车。当他再回到这里，已过三年，看台上的巨大横幅却依然明确，这里还是他的家。</p>
+  <div class="foot">当时光的列车缓缓驶过酋长球场</div>
+</section>
+
+<!-- ========== 历史最佳射手 ========== -->
+<section class="card">
+  <div class="meta">当时光的列车缓缓驶过酋长球场</div>
+  <h2>历史最佳射手</h2>
+  <div class="item"><div class="n" aria-hidden="true">01</div><p>380 场比赛</p></div>
+  <div class="item"><div class="n" aria-hidden="true">02</div><p>226 个进球</p></div>
+  <div class="item"><div class="n" aria-hidden="true">03</div><p>4 座英超金靴</p></div>
+  <div class="item"><div class="n" aria-hidden="true">04</div><p>2 座英超奖杯</p></div>
+  <div class="item"><div class="n" aria-hidden="true">05</div><p>49 场不败</p></div>
+  <div class="foot">当时光的列车缓缓驶过酋长球场</div>
+</section>
+
+<!-- ========== 海布里的最后一吻 ========== -->
+<section class="card">
+  <div class="meta">当时光的列车缓缓驶过酋长球场</div>
+  <h2>海布里的最后一吻</h2>
+  <p class="body">32 岁的亨利就坐在那里，深情的目光望过去，都是自己 22 岁的影子。</p>
+  <p class="body pr132">历史最佳射手，海布里的最后一战，海布里的最后一吻。</p>
+  <p class="body">当烟花升起的时刻，那个曾属于亨利的海布里国王时代不会随年华逝去，而只会在年华的飘零中常常记起。</p>
+  <div class="foot">当时光的列车缓缓驶过酋长球场</div>
+</section>
+
+<!-- ========== 那 17 岁的样子 ========== -->
+<section class="card">
+  <div class="meta">当时光的列车缓缓驶过酋长球场</div>
+  <h2>那 17 岁的样子</h2>
+  <p class="body">当时光的列车再次驶过，渐行渐远的车辙，默默带走了属于 4 座城市的喧嚣，却指引着一路跟随的人们去追寻那段逝去的时光。当岁月含泪悄悄转身，37 岁的亨利就在那里，深情的目光望去，试图回到原点，那个出发的站台，记起自己背起行囊时，那 17 岁的样子。</p>
+  <div class="foot">当时光的列车缓缓驶过酋长球场</div>
+</section>
+
+</body>
+</html>
